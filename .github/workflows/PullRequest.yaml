@@ -2,7 +2,8 @@ name: PullRequest
 
 on:
   pull_request:
-    branches: [main]
+    types: [opened, reopened]
+    branches: [master]
 
 jobs:
   build:
