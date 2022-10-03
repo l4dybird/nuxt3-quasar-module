@@ -34,7 +34,6 @@ export default defineNuxtModule({
     const { quasar: quasarConfig, viteConfig } = option as QuasarModuleOptions;
     nuxt.options.appConfig['$quasar'] = quasarConfig;
 
-    // set css
     if (nuxt.options.css) {
       nuxt.options.css.push(
         'quasar/src/css/index.sass',
