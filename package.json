@@ -1,0 +1,62 @@
+{
+  "name": "nuxt3-quasar-module",
+  "version": "0.1.0",
+  "description": "Nuxt Module for quasar",
+  "keywords": [
+    "quasar",
+    "nuxt",
+    "vue"
+  ],
+  "homepage": "https://github.com/l4dybird/nuxt3-quasar-module",
+  "bugs": {
+    "url": "https://github.com/l4dybird/nuxt3-quasar-module/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/l4dybird/nuxt3-quasar-module.git"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:watch": "vitest -w",
+    "test:types": "nuxi typecheck"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.0.0-rc.11",
+    "@quasar/extras": "^1.15.4",
+    "@quasar/vite-plugin": "^1.2.3",
+    "quasar": "^2.8.4"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "latest",
+    "nuxt": "^3.0.0-rc.11",
+    "sass": "1.32.12",
+    "typescript": "^4.8.4",
+    "vue-tsc": "^0.40.13"
+  },
+  "resolutions": {
+    "sass": "1.32.12"
+  },
+  "volta": {
+    "node": "16.17.1",
+    "npm": "8.15.0"
+  }
+}
