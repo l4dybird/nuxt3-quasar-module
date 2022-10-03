@@ -1,6 +1,6 @@
 {
   "name": "@l4dybird/nuxt3-quasar-module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Nuxt Module for quasar",
   "keywords": [
     "quasar",
@@ -42,12 +42,12 @@
     "@nuxt/kit": "^3.0.0-rc.11",
     "@quasar/extras": "^1.15.4",
     "@quasar/vite-plugin": "^1.2.3",
-    "quasar": "^2.8.4"
+    "quasar": "^2.8.4",
+    "sass": "1.32.12"
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",
     "nuxt": "^3.0.0-rc.11",
-    "sass": "1.32.12",
     "typescript": "^4.8.4",
     "vue-tsc": "^0.40.13"
   },
