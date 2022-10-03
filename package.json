@@ -1,6 +1,6 @@
 {
-  "name": "nuxt3-quasar-module",
-  "version": "0.1.0",
+  "name": "@l4dybird/nuxt3-quasar-module",
+  "version": "1.0.0",
   "description": "Nuxt Module for quasar",
   "keywords": [
     "quasar",
@@ -33,6 +33,7 @@
     "build": "nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
+    "dev:generate": "nuxi generate playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "test": "vitest",
     "test:coverage": "vitest --coverage",

@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   css: ['~/assets/styles/quasar.scss'],
   buildModules: [
     [
-      'nuxt3-quasar-module',
+      '@l4dybird/nuxt3-quasar-module',
       {
         viteConfig: {
           sassVariables: '~/assets/styles/quasar.variables.scss',
