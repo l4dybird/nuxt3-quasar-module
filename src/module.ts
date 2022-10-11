@@ -4,8 +4,8 @@ import { QuasarPluginOptions } from 'quasar';
 import { quasar, QuasarPluginOpts } from '@quasar/vite-plugin';
 
 export interface QuasarModuleOptions extends ModuleOptions {
-  quasar: QuasarPluginOptions;
-  viteConfig: QuasarPluginOpts;
+  quasar?: Partial<QuasarPluginOptions>;
+  quasarPlugin?: QuasarPluginOpts;
 }
 
 class ViteQuasarConfig implements Partial<QuasarPluginOpts> {
@@ -31,29 +31,25 @@ export default defineNuxtModule({
   setup(option, nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    const { quasar: quasarConfig, viteConfig } = option as QuasarModuleOptions;
+    const { quasar: quasarConfig, quasarPlugin } =
+      option as QuasarModuleOptions;
     nuxt.options.appConfig['$quasar'] = quasarConfig;
 
-    if (nuxt.options.css) {
-      nuxt.options.css.push(
-        'quasar/src/css/index.sass',
-        '@quasar/extras/material-icons/material-icons.css'
-      );
-    } else {
-      nuxt.options['css'] = [
-        'quasar/src/css/index.sass',
-        '@quasar/extras/material-icons/material-icons.css',
-      ];
-    }
+    nuxt.options.css.push(
+      'quasar/src/css/index.sass',
+      '@quasar/extras/material-icons/material-icons.css'
+    );
 
-    const quasarPluginOpts: QuasarPluginOpts = new ViteQuasarConfig(viteConfig);
+    const quasarPluginOpts: QuasarPluginOpts = new ViteQuasarConfig(
+      quasarPlugin
+    );
     const pluginQuasar = quasar(quasarPluginOpts);
 
-    if (nuxt.options.vite.plugins) {
-      nuxt.options.vite.plugins.push(pluginQuasar);
-    } else {
-      nuxt.options.vite['plugins'] = [pluginQuasar];
-    }
+    const viteConfig = nuxt.options.vite;
+
+    viteConfig['plugins']
+      ? viteConfig.plugins.push(pluginQuasar)
+      : (viteConfig['plugins'] = [pluginQuasar]);
 
     addPlugin(resolver.resolve('./runtime/quasar'));
   },

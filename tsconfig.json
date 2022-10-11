@@ -1,4 +1,12 @@
 {
+  "compilerOptions": {
+    "types": [
+      "vitest/globals"
+    ],
+  },
   "extends": "./playground/.nuxt/tsconfig.json",
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "test/*.spec.ts"
+  ]
 }
