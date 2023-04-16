@@ -11,7 +11,7 @@ import {
 import * as quasarComponents from 'quasar';
 import * as quasarDirectives from 'quasar';
 
-class QuasarConfig implements Partial<QuasarPluginOptions> {
+export class QuasarConfig implements Partial<QuasarPluginOptions> {
   public lang?: QuasarLanguage;
 
   public config?: any;
@@ -24,11 +24,11 @@ class QuasarConfig implements Partial<QuasarPluginOptions> {
 
   public plugins?: QuasarPlugins;
 
-  constructor(args: QuasarConfig) {
+  constructor(args?: QuasarConfig) {
     args = args ?? {};
 
     this.lang = args.lang;
-    this.config = args.config ?? {};
+    this.config = args.config;
     this.iconSet = args.iconSet;
     this.components = args.components ?? quasarComponents;
     this.directives = args.directives ?? quasarDirectives;
@@ -37,8 +37,9 @@ class QuasarConfig implements Partial<QuasarPluginOptions> {
 }
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const appConfig = useAppConfig();
-  const quasarConfig = new QuasarConfig(appConfig['$quasar']);
+  // HACK: Refactor how QuasarConfig is referenced.
+  const config = useAppConfig().$quasar.quasarConfig as QuasarConfig;
+  const quasarConfig = new QuasarConfig(config);
 
   nuxtApp.vueApp.use(Quasar, quasarConfig);
 });

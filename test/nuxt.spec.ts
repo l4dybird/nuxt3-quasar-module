@@ -1,17 +1,17 @@
 import { setup, createPage } from '@nuxt/test-utils';
 import { fileURLToPath } from 'node:url';
-import { QuasarModuleOptions } from '../src/module';
+import { ModuleOptions } from '../src/types';
 import langJa from 'quasar/lang/ja';
 
 describe('works with module option setting', async () => {
   const sassVariablesPath = `${fileURLToPath(
     new URL('../playground', import.meta.url)
   )}/assets/styles/quasar.variables.scss`;
-  const quasarModuleOptions: QuasarModuleOptions = {
-    quasar: {
+  const quasarModuleOptions: ModuleOptions = {
+    quasarConfig: {
       lang: langJa,
     },
-    quasarPlugin: {
+    quasarViteConfig: {
       sassVariables: sassVariablesPath,
     },
   };
@@ -22,7 +22,7 @@ describe('works with module option setting', async () => {
     server: true,
     nuxtConfig: {
       ssr: false,
-      buildModules: [['@l4dybird/nuxt3-quasar-module', quasarModuleOptions]],
+      modules: [['@l4dybird/nuxt3-quasar-module', quasarModuleOptions]],
       hooks: {
         'vite:extendConfig'(config, { isClient }) {
           config.define!.__BROWSER__ = isClient;
